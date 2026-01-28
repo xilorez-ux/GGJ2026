@@ -59,13 +59,11 @@ public class PlayerInput : MonoBehaviour
 
 
 
-            deltaToReach.y = transform.rotation.y + 1 + playerRotation.y;
-        //Debug.Log("Delta To Reach = " + deltaToReach);
-        //Debug.Log("playerRotation.y = " + playerRotation.y);
-        Debug.Log("TransformRotation = " + this.transform.rotation.y);
+        
+        deltaToReach.y = transform.rotation.y + 1 + playerRotation.y; //to register the delta between current and target rotation
+
         if (playerRotation.y != deltaToReach.y)
-        {
-            
+        { 
             transform.Rotate(transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
             Camera.main.transform.Rotate(Camera.main.transform.right, playerRotation.y * angleSpeed * Time.deltaTime);  
         }
