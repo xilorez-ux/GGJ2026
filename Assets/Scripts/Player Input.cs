@@ -59,10 +59,10 @@ public class PlayerInput : MonoBehaviour
 
 
 
-            deltaToReach.y = transform.rotation.y + playerRotation.y;
-        Debug.Log("Delta To Reach = " + deltaToReach);
-        Debug.Log("playerRotation.y = " + playerRotation.y);
-        Debug.Log("TransformRotation = " + transform.rotation);
+            deltaToReach.y = transform.rotation.y + 1 + playerRotation.y;
+        //Debug.Log("Delta To Reach = " + deltaToReach);
+        //Debug.Log("playerRotation.y = " + playerRotation.y);
+        Debug.Log("TransformRotation = " + this.transform.rotation.y);
         if (playerRotation.y != deltaToReach.y)
         {
             
