@@ -1,16 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float delayToSwitch = 5f;
+
+    public bool isKawaiiMap = true;
+    public bool needToSwitchMaps = true;
+    private float distanceBetweenMaps = 59.4f;
+
+    [SerializeField] GameObject Player;
+    private Vector3 tempPlayerPos;
+
+    private void Start()
     {
-        
+        StartCoroutine(ChangeMap(delayToSwitch));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator ChangeMap(float duration)
     {
-        
+        yield return new WaitForSeconds(duration);
+        tempPlayerPos = Player.transform.position;
+        if(isKawaiiMap == true && needToSwitchMaps == true)
+        {
+            Player.transform.position = new Vector3(tempPlayerPos.x, -distanceBetweenMaps, tempPlayerPos.z);
+            isKawaiiMap = false;
+            needToSwitchMaps=false;
+            yield break;
+        }
+
+        if (!isKawaiiMap && needToSwitchMaps == true)
+        {
+            Player.transform.position = new Vector3(tempPlayerPos.x, distanceBetweenMaps, tempPlayerPos.z);
+            isKawaiiMap = true;
+            needToSwitchMaps=false;
+            yield break;
+        }
     }
 }
