@@ -49,30 +49,52 @@ public class PlayerInput : MonoBehaviour
     private void Move(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
-
     }
+
     [SerializeField] float angleSpeed;
 
     private void Update()
     {
         rb.linearVelocity = this.transform.right * move.x + this.transform.forward * move.y;
 
+        PlayerXRotation();
+        PlayerYRotation();
 
+    }
 
-        
-        deltaToReach.y = transform.rotation.y + 1 + playerRotation.y; //to register the delta between current and target rotation
-
+    private void PlayerYRotation()
+    {
         if (playerRotation.y != 0)
-        { 
+        {
             transform.Rotate(transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
-            Camera.main.transform.Rotate(Camera.main.transform.right, playerRotation.y * angleSpeed * Time.deltaTime);  
+            Camera.main.transform.Rotate(Camera.main.transform.right, playerRotation.y * angleSpeed * Time.deltaTime);
+
+            //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            playerRotation = Vector2.zero;
+
         }
 
-        if(playerRotation.y == 0)
+        if (playerRotation.y == 0)
         {
             return;
         }
-        
+    }
+
+    private void PlayerXRotation()
+    {
+        if (playerRotation.x != 0)
+        {
+            transform.Rotate(transform.forward, playerRotation.y * angleSpeed * Time.deltaTime);
+            Camera.main.transform.Rotate(Camera.main.transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
+
+            playerRotation = Vector2.zero;
+
+        }
+
+        if (playerRotation.x == 0)
+        {
+            return;
+        }
     }
 
 }

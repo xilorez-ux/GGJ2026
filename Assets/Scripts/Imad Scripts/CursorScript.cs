@@ -8,6 +8,7 @@ public class CursorScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
 }
