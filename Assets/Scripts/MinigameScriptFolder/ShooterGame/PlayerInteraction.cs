@@ -36,23 +36,22 @@ public class PlayerInteraction : MonoBehaviour
         if (other.name == "EquipementZoneShooter")
         {
             wherePlayerAre = playerLocalisation.shooterStand;
-            Debug.Log(wherePlayerAre);
+            
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         wherePlayerAre = playerLocalisation.playground;
-        Debug.Log(wherePlayerAre);
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(whatPlayerDo);
-        Debug.Log(wherePlayerAre);
+
         if (wherePlayerAre == playerLocalisation.shooterStand)
-            //if (input.inputActions.Player.Interact.IsPressed())
+            if (input.inputActions.Player.Interact.IsPressed())
             {
                 whatPlayerDo = playerState.playingShooter;
                 MinigameShooterManager.chronoRestant = 30;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CibleHorizontale : MonoBehaviour
+public class CibleScipt : MonoBehaviour
 {
     public float speed; //vitesse des cibles
     public Transform[] waypoints;//les différents point ou la cible doit aller
@@ -25,5 +25,15 @@ public class CibleHorizontale : MonoBehaviour
             target = waypoints[destPoint];
         }
 
+    }
+    public void ImHit(bool imhit)
+    {
+        if(imhit == true)
+        {
+            Destroy(this.GetComponentInParent<GameObject>());
+            
+
+
+        }
     }
 }

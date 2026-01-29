@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
 
 
 public class MinigameShooterManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class MinigameShooterManager : MonoBehaviour
     public GameObject prefabCibleTrois;
     public GameObject prefabCibleQuatre;
 
+    public GameObject fusilSurLeStand;
+    public GameObject fusilDuJoueur;
 
 
     private float spawnChrono;//pas touche a ca
@@ -37,6 +40,8 @@ public class MinigameShooterManager : MonoBehaviour
     {
         if (chronoRestant >= 0 && PlayerInteraction.instance.whatPlayerDo == playerState.playingShooter)
         {
+            fusilSurLeStand.SetActive(false);//visuel Des fusils (on l'attrape)
+            fusilDuJoueur.SetActive(true);
             chronoRestant -= Time.deltaTime;
 
             spawnChrono += Time.deltaTime;
@@ -46,7 +51,7 @@ public class MinigameShooterManager : MonoBehaviour
                 spawnChrono = 0;
                 
 
-                randomSpawn = UnityEngine.Random.Range(1,4);
+                randomSpawn = UnityEngine.Random.Range(1,5);
               
 
                 if (randomSpawn == 1)
@@ -62,7 +67,7 @@ public class MinigameShooterManager : MonoBehaviour
                 {
                     Instantiate(prefabCibleTrois);
                 }
-                else
+                else if (randomSpawn ==4)
                 {
                     Instantiate(prefabCibleQuatre);
                 }
@@ -78,6 +83,11 @@ public class MinigameShooterManager : MonoBehaviour
 
 
 
+        }
+        else
+        {
+            fusilSurLeStand.SetActive(true);//visuel Des fusils (on le repose)
+            fusilDuJoueur.SetActive(false);
         }
     }
 
