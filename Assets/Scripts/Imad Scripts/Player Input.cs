@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -11,39 +12,32 @@ public class PlayerInput : MonoBehaviour
     private InputSystem_Actions inputActions;
     [SerializeField] private float speed, accel;
 
+    private float yPlayerAngle, xCameraAngle = 0f;
+    [SerializeField] private float xRotationSpeed, yRotationSpeed = 1f;
+
+
+
     [SerializeField] private Rigidbody rb;
 
     private Vector2 move;
+    private Vector2 mousePos;
     private Vector2 playerRotation;
-
-    private GameObject Player;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Camera.main.transform.LookAt(Vector2.zero);
 
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
-        //inputActions.Player.Move.performed += Move;
-
         inputActions.Player.Look.performed += Look; 
-       
     }
 
     private void Look(InputAction.CallbackContext context)
     {
         playerRotation = context.ReadValue<Vector2>();
-        playerRotation.x = 0;
-        playerRotation.y = playerRotation.y * (-1);
-
-       
+        playerRotation.y = playerRotation.y * (-1); 
     }
-
-    //private void Move(InputAction.CallbackContext context)
-    //{
-    //    move = context.ReadValue<Vector2>();
-    //}
 
     [SerializeField] float angleSpeed;
     [SerializeField] private float moveSpeed = 1f;
@@ -51,35 +45,25 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         move = inputActions.Player.Move.ReadValue<Vector2>();
-        Debug.Log(move);
 
         rb.MovePosition(transform.position + (this.transform.right * move.x + this.transform.forward * move.y).normalized * moveSpeed * Time.deltaTime);
-        //rb.linearVelocity = this.transform.right * move.x + this.transform.forward * move.y;
-            //Debug.Log("Move : " + move);
-
 
         PlayerRotation();
     }
 
     private void PlayerRotation()
     {
-        if (playerRotation.y != 0)
-        {
-            transform.Rotate(transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
-            Camera.main.transform.Rotate(Camera.main.transform.right, playerRotation.y * angleSpeed * Time.deltaTime);
-
-            transform.Rotate(transform.up, playerRotation.y * angleSpeed * Time.deltaTime);
-            Player.transform.Rotate(Player.transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
+        print(inputActions.Player.Look.ReadValue<Vector2>().x);
+        print(yPlayerAngle);
 
 
-            //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            playerRotation = Vector2.zero;
+        yPlayerAngle += inputActions.Player.Look.ReadValue<Vector2>().x * xRotationSpeed * Time.deltaTime;
 
-        }
+        xCameraAngle -= inputActions.Player.Look.ReadValue<Vector2>().y * yRotationSpeed * Time.deltaTime;
+        xCameraAngle = Mathf.Clamp(xCameraAngle, -90f, 90f);
 
-        if (playerRotation.y == 0)
-        {
-            return;
-        }
+
+        Camera.main.transform.localRotation = Quaternion.Euler(Vector3.right * xCameraAngle);
+        this.transform.rotation = Quaternion.Euler(Vector3.up * yPlayerAngle);
     }
 }
