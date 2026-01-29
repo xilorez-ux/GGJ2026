@@ -234,6 +234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 809010733}
   - {fileID: 342681292}
   - {fileID: 1181190916}
   m_Father: {fileID: 0}
@@ -515,12 +516,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShotGunArgument
   player: {fileID: 105246845}
   bullet: {fileID: 567173483}
-  bulletSpawnPoint: {fileID: 342681292}
+  bulletSpawnPoint: {fileID: 809010733}
 --- !u!1 &567173483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 248779264268384575, guid: bb06ea718faa8544ead1599c1ba426c3, type: 3}
   m_PrefabInstance: {fileID: 5667530279833778412}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &809010732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 809010733}
+  m_Layer: 0
+  m_Name: Canon(bulletSpawnPoint)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &809010733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809010732}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.014, y: 0.6524887, z: 0.667}
+  m_LocalScale: {x: 0.43, y: 0.43000004, z: 0.43000004}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 105246849}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128352262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1057,14 @@ PrefabInstance:
       propertyPath: prefabCibleQuatre
       value: 
       objectReference: {fileID: 916973847042254772, guid: 25a099ecef4a4ad4d946049147997ce6, type: 3}
+    - target: {fileID: 8196580845943082118, guid: aa263a42551f73b43b5fb1fb4b2304ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.143
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196580845943082118, guid: aa263a42551f73b43b5fb1fb4b2304ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.571
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

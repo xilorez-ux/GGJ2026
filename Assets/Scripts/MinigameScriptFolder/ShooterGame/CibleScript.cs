@@ -26,7 +26,7 @@ public class CibleScipt : MonoBehaviour
         }
 
     }
-    public void ImHit(bool imhit)
+    public void ImHit(bool imhit)//a finir / changer
     {
         if(imhit == true)
         {
