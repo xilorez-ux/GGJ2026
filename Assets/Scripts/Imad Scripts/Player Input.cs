@@ -15,19 +15,6 @@ public class PlayerInput : MonoBehaviour
     private Vector2 move;
     private Vector2 playerRotation;
 
-    private Vector2 deltaToReach;
-
-
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -57,8 +44,9 @@ public class PlayerInput : MonoBehaviour
     {
         rb.linearVelocity = this.transform.right * move.x + this.transform.forward * move.y;
 
-        PlayerXRotation();
+
         PlayerYRotation();
+        PlayerXRotation();
 
     }
 
