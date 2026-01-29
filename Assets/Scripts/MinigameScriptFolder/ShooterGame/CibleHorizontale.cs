@@ -9,6 +9,7 @@ public class CibleHorizontale : MonoBehaviour
     void Start()
     {
         target = waypoints[0];
+        this.transform.position = target.position;//je tp la cible pour être sur qu'elle est au bont endroit dans ma scéne a sont invocation.
     }
 
     // Update is called once per frame
@@ -16,9 +17,9 @@ public class CibleHorizontale : MonoBehaviour
     {
        
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);//un translation vers notre prochaine cible
 
-        if(Vector3.Distance(transform.position, target.position) < 0.3f)
+        if(Vector3.Distance(transform.position, target.position) < 0.3f)//on est proche de notre cible donc on peut passer a la suivante.
         {
             destPoint = (destPoint+1) % waypoints.Length;
             target = waypoints[destPoint];
