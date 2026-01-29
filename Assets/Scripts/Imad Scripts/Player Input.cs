@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -15,13 +16,19 @@ public class PlayerInput : MonoBehaviour
     private Vector2 move;
     private Vector2 playerRotation;
 
+    private GameObject Player;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
-        inputActions.Player.Move.performed += Move;
+        //inputActions.Player.Move.performed += Move;
+
         inputActions.Player.Look.performed += Look; 
+       
     }
 
     private void Look(InputAction.CallbackContext context)
@@ -33,29 +40,37 @@ public class PlayerInput : MonoBehaviour
        
     }
 
-    private void Move(InputAction.CallbackContext context)
-    {
-        move = context.ReadValue<Vector2>();
-    }
+    //private void Move(InputAction.CallbackContext context)
+    //{
+    //    move = context.ReadValue<Vector2>();
+    //}
 
     [SerializeField] float angleSpeed;
+    [SerializeField] private float moveSpeed = 1f;
 
     private void Update()
     {
-        rb.linearVelocity = this.transform.right * move.x + this.transform.forward * move.y;
+        move = inputActions.Player.Move.ReadValue<Vector2>();
+        Debug.Log(move);
+
+        rb.MovePosition(transform.position + (this.transform.right * move.x + this.transform.forward * move.y).normalized * moveSpeed * Time.deltaTime);
+        //rb.linearVelocity = this.transform.right * move.x + this.transform.forward * move.y;
+            //Debug.Log("Move : " + move);
 
 
-        PlayerYRotation();
-        PlayerXRotation();
-
+        PlayerRotation();
     }
 
-    private void PlayerYRotation()
+    private void PlayerRotation()
     {
         if (playerRotation.y != 0)
         {
             transform.Rotate(transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
             Camera.main.transform.Rotate(Camera.main.transform.right, playerRotation.y * angleSpeed * Time.deltaTime);
+
+            transform.Rotate(transform.up, playerRotation.y * angleSpeed * Time.deltaTime);
+            Player.transform.Rotate(Player.transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
+
 
             //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             playerRotation = Vector2.zero;
@@ -67,22 +82,4 @@ public class PlayerInput : MonoBehaviour
             return;
         }
     }
-
-    private void PlayerXRotation()
-    {
-        if (playerRotation.x != 0)
-        {
-            transform.Rotate(transform.forward, playerRotation.y * angleSpeed * Time.deltaTime);
-            Camera.main.transform.Rotate(Camera.main.transform.up, playerRotation.x * angleSpeed * Time.deltaTime);
-
-            playerRotation = Vector2.zero;
-
-        }
-
-        if (playerRotation.x == 0)
-        {
-            return;
-        }
-    }
-
 }
