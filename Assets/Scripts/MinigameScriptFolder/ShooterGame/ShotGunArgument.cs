@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -5,31 +6,37 @@ using UnityEngine.Rendering;
 public class ShotGunArgument : MonoBehaviour
 {
     PlayerInput input;
-    private int weaponRange=10;
+    public GameObject player;
+    public GameObject bullet;
+    public Transform bulletSpawnPoint;
+    private int weaponPower=1000;
+    private bool fireReload=true;
 
     private void Awake()
     {
-        input = GetComponent<PlayerInput>();
-
+        input = player.GetComponent<PlayerInput>();
+        
     }
+
     private void Update()
     {
-        if (input.inputActions.Player.Attack.IsPressed())
+        if (input.inputActions.Player.Attack.IsPressed()&& fireReload == true)
         {
-            Debug.Log("je tire ");
-            RaycastHit hit;
-            Debug.DrawRay(input.transform.position, Camera.main.transform.forward * weaponRange, Color.pink);
-            if (Physics.Raycast(input.transform.position, Camera.main.transform.forward, out hit, weaponRange))
-            {
-                if(hit.rigidbody != null && hit.collider.gameObject.name =="Cible")
-                {
-
-                    hit.collider.gameObject.GetComponent<CibleScipt>().ImHit(true);
-                }
-                    
-
-
-            }
+            StartCoroutine(Fire());
+            fireReload = false;
         }
+    }
+    IEnumerator Fire()
+    {
+        
+
+            GameObject bulleto = Instantiate(bullet, bulletSpawnPoint.position, Camera.main.transform.rotation);
+            bulleto.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * weaponPower);
+            yield return new WaitForSeconds(0.5f);
+            Destroy(bulleto);
+            fireReload = true;
+            
+        
+        
     }
 }
