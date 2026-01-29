@@ -47,24 +47,24 @@ public class MinigameShooterManager : MonoBehaviour
                 
 
                 randomSpawn = UnityEngine.Random.Range(1,4);
-                Debug.Log(randomSpawn);
+              
 
                 if (randomSpawn == 1)
                 {
-                    Instantiate(prefabCibleUno, transform.parent);
+                    Instantiate(prefabCibleUno);
                     
                 }
                 else if (randomSpawn == 2)
                 {
-                    Instantiate(prefabCibleDeux, transform.parent);
+                    Instantiate(prefabCibleDeux);
                 }
                 else if (randomSpawn == 3)
                 {
-                    Instantiate(prefabCibleTrois, transform.parent);
+                    Instantiate(prefabCibleTrois);
                 }
                 else
                 {
-                    Instantiate(prefabCibleQuatre, transform.parent);
+                    Instantiate(prefabCibleQuatre);
                 }
 
 

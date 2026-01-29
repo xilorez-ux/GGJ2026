@@ -16,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     public static PlayerInteraction instance;
     public playerState whatPlayerDo;
     public playerLocalisation wherePlayerAre;
-    private InputSystem_Actions inputActions;
+    PlayerInput input;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -25,10 +25,9 @@ public class PlayerInteraction : MonoBehaviour
 
     void Start()
     {
-        whatPlayerDo = playerState.playingShooter;
-        MinigameShooterManager.chronoRestant = 30;
+     input = GetComponent<PlayerInput>();
 
-        whatPlayerDo = playerState.playingShooter;
+        whatPlayerDo = playerState.idle;
         wherePlayerAre = playerLocalisation.entry;
     }
 
@@ -44,6 +43,7 @@ public class PlayerInteraction : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         wherePlayerAre = playerLocalisation.playground;
+        Debug.Log(wherePlayerAre);
     }
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class PlayerInteraction : MonoBehaviour
         Debug.Log(whatPlayerDo);
         Debug.Log(wherePlayerAre);
         if (wherePlayerAre == playerLocalisation.shooterStand)
-            if (inputActions.Player.Interact.IsPressed())
+            if (input.inputActions.Player.Interact.IsPressed())
             {
                 whatPlayerDo = playerState.playingShooter;
                 MinigameShooterManager.chronoRestant = 30;
