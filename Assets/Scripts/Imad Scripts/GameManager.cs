@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public float delayToSwitch = 5f;
 
     public bool isKawaiiMap = true;
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject Player;
     private Vector3 tempPlayerPos;
 
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(this); }
+    }
     private void Start()
     {
         StartCoroutine(ChangeMap(delayToSwitch));

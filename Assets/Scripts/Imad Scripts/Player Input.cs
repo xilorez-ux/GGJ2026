@@ -6,16 +6,12 @@ using UnityEngine.Rendering;
 
 public class PlayerInput : MonoBehaviour
 {
-    //private PlayerInputController
-
     [SerializeField]
-    private InputSystem_Actions inputActions;
+    internal InputSystem_Actions inputActions;
     [SerializeField] private float speed, accel;
 
     private float yPlayerAngle, xCameraAngle = 0f;
     [SerializeField] private float xRotationSpeed, yRotationSpeed = 1f;
-
-
 
     [SerializeField] private Rigidbody rb;
 
