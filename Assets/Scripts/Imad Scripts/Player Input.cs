@@ -53,10 +53,6 @@ public class PlayerInput : MonoBehaviour
 
     private void PlayerRotation()
     {
-        print(inputActions.Player.Look.ReadValue<Vector2>().x);
-        print(yPlayerAngle);
-
-
         yPlayerAngle += inputActions.Player.Look.ReadValue<Vector2>().x * xRotationSpeed * Time.deltaTime;
 
         xCameraAngle -= inputActions.Player.Look.ReadValue<Vector2>().y * yRotationSpeed * Time.deltaTime;
