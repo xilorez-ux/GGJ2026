@@ -52,7 +52,7 @@ public class PlayerInteraction : MonoBehaviour
         Debug.Log(whatPlayerDo);
         Debug.Log(wherePlayerAre);
         if (wherePlayerAre == playerLocalisation.shooterStand)
-            if (input.inputActions.Player.Interact.IsPressed())
+            //if (input.inputActions.Player.Interact.IsPressed())
             {
                 whatPlayerDo = playerState.playingShooter;
                 MinigameShooterManager.chronoRestant = 30;
