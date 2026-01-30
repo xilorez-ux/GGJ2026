@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public bool isKawaiiMap = true;
     public bool needToSwitchMaps = true;
     private float distanceBetweenMaps = 59.4f;
+
+    public Action OnChangingLayer;
 
     [SerializeField] GameObject Player;
     private Vector3 tempPlayerPos;
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ChangeMap(float duration)
     {
+        OnChangingLayer?.Invoke();
         yield return new WaitForSeconds(duration);
         tempPlayerPos = Player.transform.position;
         if(isKawaiiMap == true && needToSwitchMaps == true)
