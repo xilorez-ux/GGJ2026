@@ -12,9 +12,6 @@ public class ChangeLayer : MonoBehaviour
     [SerializeField] private LayerMask defaultMask; //on default layer
     [SerializeField] private LayerMask goreMask; //on water layer
 
-    [SerializeField] private Renderer notGlitchedRenderer;
-    [SerializeField] private Renderer glitchedRenderer;
-
     //Get Referenced Renderers, to be able switch to the desired one
     UnityEngine.Rendering.Universal.UniversalAdditionalCameraData additionalCameraData;
 
