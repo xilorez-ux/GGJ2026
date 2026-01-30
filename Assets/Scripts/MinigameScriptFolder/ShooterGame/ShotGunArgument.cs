@@ -9,7 +9,7 @@ public class ShotGunArgument : MonoBehaviour
     public GameObject player;
     public GameObject bullet;
     public Transform bulletSpawnPoint;
-    private int weaponPower=1000;
+    private int weaponPower=1100;
     private bool fireReload=true;
 
     private void Awake()

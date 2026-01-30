@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8260651087195298677}
   - component: {fileID: 2239788775055778244}
   - component: {fileID: 5333536911946686038}
+  - component: {fileID: 8834134192403434017}
   m_Layer: 0
   m_Name: Cible
   m_TagString: Untagged
@@ -139,6 +140,27 @@ MonoBehaviour:
   waypoints:
   - {fileID: 3714045947520963725}
   - {fileID: 6882647203256006507}
+--- !u!65 &8834134192403434017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043687950834679651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.019994464, y: 0.020240173, z: 0.028250258}
+  m_Center: {x: 0.0000000023283064, y: -0.000013885554, z: 0.0046145157}
 --- !u!1 &9034114059148068699
 GameObject:
   m_ObjectHideFlags: 0
