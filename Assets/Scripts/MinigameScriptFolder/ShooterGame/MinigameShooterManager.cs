@@ -8,19 +8,20 @@ using Unity.VisualScripting;
 
 public class MinigameShooterManager : MonoBehaviour
 {
-    public static bool shootMinigameOn;
+    //public static bool shootMinigameOn;
+    public static int shooterScore;// score du joueur sur ce minijeu
     public GameObject prefabCibleUno;//prefab des cibles tout en haut
     public GameObject prefabCibleDeux;
     public GameObject prefabCibleTrois;
     public GameObject prefabCibleQuatre;
 
-    public GameObject fusilSurLeStand;
+    public GameObject fusilSurLeStand;//pour changer le visuel
     public GameObject fusilDuJoueur;
 
 
     private float spawnChrono;//pas touche a ca
 
-    private float spawnSpeed = 1;//vitesse de spawn (a modifié si ont veux plus ou moins de difficulté)
+    private float spawnSpeed = 2;//vitesse de spawn (a modifié si ont veux plus ou moins de difficulté)
      
     public static float chronoRestant;//durée restant du minijeux
     
@@ -88,6 +89,8 @@ public class MinigameShooterManager : MonoBehaviour
         {
             fusilSurLeStand.SetActive(true);//visuel Des fusils (on le repose)
             fusilDuJoueur.SetActive(false);
+            PlayerInteraction.instance.whatPlayerDo = playerState.idle;
+            
         }
     }
 

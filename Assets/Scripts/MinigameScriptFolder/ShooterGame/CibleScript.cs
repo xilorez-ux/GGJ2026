@@ -26,14 +26,13 @@ public class CibleScipt : MonoBehaviour
         }
 
     }
-    public void ImHit(bool imhit)//a finir / changer
+    private void OnTriggerEnter(Collider other)
     {
-        if(imhit == true)
+        if (other.CompareTag("Bullet") == true)
         {
-            Destroy(this.GetComponentInParent<GameObject>());
-            
-
-
+            MinigameShooterManager.shooterScore += 1;//on augmente le score de 1
+            Debug.Log(MinigameShooterManager.shooterScore);
+            Destroy(this.gameObject);//ca ne détruit pas les parents
         }
     }
 }
