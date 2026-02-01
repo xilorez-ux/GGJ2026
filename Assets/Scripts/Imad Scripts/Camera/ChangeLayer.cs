@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ChangeLayer : MonoBehaviour
 {
@@ -36,7 +34,7 @@ public class ChangeLayer : MonoBehaviour
     void Update()
     {
 
-        if (inputActions.Player.Interact.IsPressed() && coroutineStarted == false) //REMPLACER PAR CONDITIONS DE SCORE
+        if (MinigameShooterManager.shooterScore >= 10 && coroutineStarted == false) //REMPLACER PAR CONDITIONS DE SCORE
         {
             StartCoroutine(ShaderCoroutine());//coroutine for the delay, avoid to block the udpate
             

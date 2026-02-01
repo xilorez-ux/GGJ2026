@@ -1,9 +1,4 @@
-
-using System;
 using UnityEngine;
-using System.Collections;
-using UnityEditor.Experimental.GraphView;
-using Unity.VisualScripting;
 
 
 public class MinigameShooterManager : MonoBehaviour

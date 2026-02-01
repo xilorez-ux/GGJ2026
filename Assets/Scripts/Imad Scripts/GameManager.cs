@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
 
     public bool isKawaiiMap = true;
     public bool needToSwitchMaps = true;
-    private float distanceBetweenMaps = 59.4f;
-
+    
     public Action OnChangingLayer;
 
     [SerializeField] GameObject Player;
@@ -33,7 +32,7 @@ public class GameManager : MonoBehaviour
         tempPlayerPos = Player.transform.position;
         if(isKawaiiMap == true && needToSwitchMaps == true)
         {
-            Player.transform.position = new Vector3(tempPlayerPos.x, -distanceBetweenMaps, tempPlayerPos.z);
+           
             isKawaiiMap = false;
             needToSwitchMaps=false;
             yield break;
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         if (!isKawaiiMap && needToSwitchMaps == true)
         {
-            Player.transform.position = new Vector3(tempPlayerPos.x, distanceBetweenMaps, tempPlayerPos.z);
+          
             isKawaiiMap = true;
             needToSwitchMaps=false;
             yield break;
